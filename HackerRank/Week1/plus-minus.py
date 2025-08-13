@@ -7,39 +7,26 @@ import re
 import sys
 
 #
-# Complete the 'plusMinus' function below.
+# Complete the 'miniMaxSum' function below.
 #
 # The function accepts INTEGER_ARRAY arr as parameter.
 #
 
-def plusMinus(arr):
+def miniMaxSum(arr):
     # Write your code here
-    #initialize counters for each type
-    positive = 0
-    negative = 0
-    zero = 0
+    #sort the array to amke it easy to find min and max 4-element sums
+    arr.sort()
     
-    total = len(arr) #total number of elements in the array
+    #the minimum sum is the sum of the first 4 (smallest) numbers
+    min_sum = sum(arr[:4])
     
-    #go through each num in the list
-    for number in arr:
-        if number > 0:
-            positive += 1
-        elif number < 0:
-            negative += 1
-        else:
-            zero += 1
-            
-    #convert counts to required ratio format
-    print("{0:.6f}".format(positive / total))
-    print("{0:.6f}".format(negative / total))
-    print("{0:.6f}".format(zero / total))
+    #the maximum sum is the sum of the last 4 (largest) numbers
+    max_sum = sum(arr[1:])
     
-
-
+    #print both values in one line, separated by a space
+    print(min_sum, max_sum)
 if __name__ == '__main__':
-    n = int(input().strip())
 
     arr = list(map(int, input().rstrip().split()))
 
-    plusMinus(arr)
+    miniMaxSum(arr)
